@@ -1,7 +1,9 @@
 import { Heading } from '@radix-ui/themes';
 
-export default function Dashboard(): React.ReactNode {
+export default function Overview(): React.ReactNode {
   return (
-    <Heading as="h1" className="text-dark">Dashboard</Heading>
+    <>
+      <Heading as="h1" size="8" className="text-dark">Overview</Heading>
+    </>
   )
 }

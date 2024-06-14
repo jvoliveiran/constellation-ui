@@ -7,18 +7,23 @@ const siteConfig = {
   description: "Boilerplate UI app for Constellation Project",
   sideNavMenu: [
     {
-      label: 'Home',
-      href: '/',
+      label: 'Overview',
+      href: '/dashboard',
       Icon: HomeIcon
     },
     {
+      label: 'Person',
+      href: '/dashboard/person',
+      Icon: PersonIcon
+    },
+    {
       label: 'Users',
-      href: '/',
+      href: '/dashboard/users',
       Icon: PersonIcon
     },
     {
       label: 'Permissions',
-      href: '/',
+      href: '/dashboard/permissions',
       Icon: MixerHorizontalIcon
     },
   ],
