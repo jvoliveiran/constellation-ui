@@ -1,7 +1,7 @@
 "use client"
 
-import { ApolloProvider } from '@apollo/client';
-import client from './lib/apollo-client';
+import { QueryClientProvider  } from '@tanstack/react-query';
+import client from '@/lib/react-query-client';
 import { Theme } from '@radix-ui/themes';
 
 export interface ProvidersProps {
@@ -12,9 +12,9 @@ export interface ProvidersProps {
 export function Providers({ children }: ProvidersProps) {
 	return (
     <Theme accentColor="blue" grayColor="slate" appearance="light">
-		  <ApolloProvider client={client}>
+		  <QueryClientProvider client={client}>
         {children}
-		  </ApolloProvider>
+		  </QueryClientProvider>
     </Theme>
 	);
 }
