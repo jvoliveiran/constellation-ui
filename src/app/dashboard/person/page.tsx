@@ -1,6 +1,6 @@
 "use client"
 
-import { Callout, Heading, Table, Text } from '@radix-ui/themes';
+import { Callout, Heading, Spinner, Table, Text } from '@radix-ui/themes';
 import { GetAllDocument, Maybe, GetAllQuery } from '@/graphql/generated/graphql';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { getRequestClient } from '@/lib/request-client';
@@ -16,10 +16,12 @@ export default function Person(): React.ReactNode {
   }, queryClient);
 
   const getPageContent = (loading: boolean, isError: boolean, data: GetAllQuery | undefined) => {
-    if(loading) return <Text as="p">Loading data...</Text>
-    if(isError) return
-
-    if(!data) return <Text as="p">No results found!</Text> 
+    if(isError || loading) return
+    if(!data) return (
+      <Table.Row>
+        <Table.Cell>No results found</Table.Cell>
+      </Table.Row>
+    )
 
     return <>{data.getAll.map(person => {
       return (
@@ -42,26 +44,39 @@ export default function Person(): React.ReactNode {
             <InfoCircledIcon />
           </Callout.Icon>
           <Callout.Text>
-            {`Error fetching data: ${error?.message}`}
+            {`Error fetching data`}
           </Callout.Text>
         </Callout.Root>
       </div>
     );
   }
 
+  const showLoading = (isPending: boolean) => {
+    if(isPending) return (
+      <div className="flex justify-center items-center">
+        <Spinner size="3" />
+      </div>
+    )
+  }
+
   return (
     <>
       <Heading as="h1" size="8" className="text-dark">Person</Heading>
       {getErrorContent(isError, error)}
+      {showLoading(isPending)}
       <div className="flex flex-col mt-6">
         <Table.Root>
-          <Table.Row>
-            <Table.ColumnHeaderCell>ID</Table.ColumnHeaderCell>
-            <Table.ColumnHeaderCell>Name</Table.ColumnHeaderCell>
-            <Table.ColumnHeaderCell>Age</Table.ColumnHeaderCell>
-          </Table.Row>
+          <Table.Header>
+            <Table.Row>
+              <Table.ColumnHeaderCell>ID</Table.ColumnHeaderCell>
+              <Table.ColumnHeaderCell>Name</Table.ColumnHeaderCell>
+              <Table.ColumnHeaderCell>Age</Table.ColumnHeaderCell>
+            </Table.Row>
+          </Table.Header>
 
-          {getPageContent(isPending, isError, data)}
+          <Table.Body>
+            {getPageContent(isPending, isError, data)}
+          </Table.Body>
         </Table.Root>
       </div>
     </>

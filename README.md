@@ -25,3 +25,28 @@ Client is created in `src/app/lib` and configured into `src/app/providers`
 Configuration rely on two different env vars:
 - NEXT_PUBLIC_GRAPHQL_ENDPOINT: graphql gateway endpoint
 - NEXT_PUBLIC_AUTH_TOKEN_KEY: local storage key
+
+## Tests
+
+### Unit tests & MSW
+
+Add request handlers to `src/mocks/handlers`
+
+All handers are inject in MSW server, which is enabled/disabled automatically in `jest.setup.js`
+
+Handler example: 
+```
+const myHandler: GraphQLResponseResolver<GeneratedQuery, GraphQLVariables> = () => {
+  return HttpResponse.json({
+    data: {
+      foo: bar
+    }
+  });
+}
+...
+export const handlers = [
+  graphql.query('GeneratedQuery', myHandler)
+];
+```
+
+### E2E tests & Cypress

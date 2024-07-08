@@ -2,8 +2,9 @@
   --foreground-rgb: 0, 0, 0;
   --color-primary: #DAFFFB;
   --color-secondary: #64CCC5;
-  --color-neutral: #176B87;
+  --color-neutral: #607d87;
   --color-dark: #001C30;
+  --color-bg-light: #d1e9f2;
 }
 
 @media (prefers-color-scheme: dark) {

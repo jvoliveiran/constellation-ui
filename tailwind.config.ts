@@ -13,6 +13,7 @@ const config: Config = {
       secondary: 'var(--color-secondary)',
       neutral: 'var(--color-neutral)',
       dark: 'var(--color-dark)',
+      'gray-teal': 'var(--color-bg-light)',
       transparent: 'transparent',
       current: 'currentColor',
       black: colors.black,
