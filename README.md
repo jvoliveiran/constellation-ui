@@ -18,6 +18,18 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
+## React Query 
+
+Implemented with persisted queries in local storage. Prevent data fetch event if page is reloaded.
+
+More [here](https://tanstack.com/query/latest/docs/framework/react/plugins/persistQueryClient#persistqueryclientprovider)
+
+## GraphQL Codegen
+
+Based on `supergraph.graphql` schema file, it's possible to generate code for interacting with queries and mutations
+
+WIP
+
 ## Apollo Client
 
 Client is created in `src/app/lib` and configured into `src/app/providers`
