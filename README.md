@@ -31,7 +31,9 @@ Based on `supergraph.graphql` schema file, it's possible to generate code for in
 WIP
 
 ## Apollo Client
+*TODO*: Replace with react query docs
 
+*Deprecated*
 Client is created in `src/app/lib` and configured into `src/app/providers`
 
 Configuration rely on two different env vars:
@@ -62,3 +64,9 @@ export const handlers = [
 ```
 
 ### E2E tests & Cypress
+
+Test scenarios are added under `cypress/e2e` folder.
+
+Custom commands are defined under `cypress/support/commands` file.
+
+General configurations, like base URL are defined in `cypress.config.ts`
