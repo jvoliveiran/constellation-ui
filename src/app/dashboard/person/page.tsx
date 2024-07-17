@@ -1,6 +1,6 @@
 "use client"
 
-import { Callout, Heading, Spinner, Table, Text } from '@radix-ui/themes';
+import { Callout, Heading, Spinner, Table } from '@radix-ui/themes';
 import { GetAllDocument, Maybe, GetAllQuery } from '@/graphql/generated/graphql';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { getRequestClient } from '@/lib/request-client';

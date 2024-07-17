@@ -26,19 +26,60 @@ More [here](https://tanstack.com/query/latest/docs/framework/react/plugins/persi
 
 ## GraphQL Codegen
 
-Based on `supergraph.graphql` schema file, it's possible to generate code for interacting with queries and mutations
+Based on `supergraph.graphql` schema file, it's possible to generate code for interacting with queries and mutations.
 
-WIP
+This project uses `graphql-codegen` library for code generation based on schema.
 
-## Apollo Client
-*TODO*: Replace with react query docs
+### Generating code
 
-*Deprecated*
-Client is created in `src/app/lib` and configured into `src/app/providers`
+Workflow:
+1- Make graphql changes on services.
+2- Use constellation-gateway for composing a new `supergraph.graphql` file.
+3- Copy this new supergraph file into this project's root folder.
+4- Writte all of you GraphQL queries and mutations under `src/graphql/queries` and `src/graphql/mutations`
+4- Execute following command
 
-Configuration rely on two different env vars:
-- NEXT_PUBLIC_GRAPHQL_ENDPOINT: graphql gateway endpoint
-- NEXT_PUBLIC_AUTH_TOKEN_KEY: local storage key
+Creating code based on GraphQL schema
+
+```shell
+$ npm run codegen
+```
+
+All new code will be generated under `src/graphql/generated`.
+
+### Consuming generated code
+
+Example:
+```typescript
+import { GetAllDocument } from '@/graphql/generated/graphql';
+...
+const { isPending, isError, data, error } = useQuery({
+    queryKey: ['queryKey'],
+    queryFn: () => getRequestClient().request(GetAllDocument),
+    staleTime: 0.5 * 60 * 1000
+  }, queryClient);
+```
+
+## React Query
+
+Combined with library `graphql-request`, `react-query` is used for consuming and caching data in frontend.
+
+Configuration is set in following file:
+```shell
+src/lib/react-query-client.ts
+```
+
+It uses browser's local storage for caching, allowing users to refresh page and not loosing cached data.
+
+Usage example:
+```typescript
+const { isPending, isError, data, error } = useQuery({
+    queryKey: ['queryKey'],
+    queryFn: () => getRequestClient().request(GetAllDocument),
+    staleTime: 0.5 * 60 * 1000
+  }, queryClient);
+```
+```
 
 ## Tests
 
@@ -49,7 +90,7 @@ Add request handlers to `src/mocks/handlers`
 All handers are inject in MSW server, which is enabled/disabled automatically in `jest.setup.js`
 
 Handler example: 
-```
+```typescript
 const myHandler: GraphQLResponseResolver<GeneratedQuery, GraphQLVariables> = () => {
   return HttpResponse.json({
     data: {
