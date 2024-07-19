@@ -1,19 +1,25 @@
 "use client"
 
 import { Callout, Heading, Spinner, Table } from '@radix-ui/themes';
-import { GetAllDocument, Maybe, GetAllQuery } from '@/graphql/generated/graphql';
-import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { Maybe, GetAllQuery } from '@/graphql/generated/graphql';
+import { useQueryClient } from '@tanstack/react-query';
 import { getRequestClient } from '@/lib/request-client';
 import { InfoCircledIcon } from '@radix-ui/react-icons';
+import { usePerson } from '@/services/person.queries';
+import { usePersonData, usePersonActions } from '@/stores/person.store';
+import { useEffect } from 'react';
 
 export default function Person(): React.ReactNode {
   const queryClient = useQueryClient();
 
-  const { isPending, isError, data, error } = useQuery({
-    queryKey: ['people'],
-    queryFn: () => getRequestClient().request(GetAllDocument),
-    staleTime: 0.5 * 60 * 1000 //Overwriting default staleTime to 30sec
-  }, queryClient);
+  const { isPending, isError, data, error } = usePerson(queryClient, getRequestClient());
+  const { add: setPersonData } = usePersonActions();
+  
+  useEffect(() => {
+    if(data) {
+      setPersonData(data.getAll);
+    } 
+  }, [setPersonData, data]);
 
   const getPageContent = (loading: boolean, isError: boolean, data: GetAllQuery | undefined) => {
     if(isError || loading) return
