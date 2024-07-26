@@ -13,13 +13,16 @@ export default function Person(): React.ReactNode {
   const queryClient = useQueryClient();
 
   const { isPending, isError, data, error } = usePerson(queryClient, getRequestClient());
-  const { add: setPersonData } = usePersonActions();
+  const { addPerson } = usePersonActions();
+  const personStore = usePersonData();
+
+  console.log({ personStore });
   
   useEffect(() => {
     if(data) {
-      setPersonData(data.getAll);
+      addPerson(data.getAll);
     } 
-  }, [setPersonData, data]);
+  }, [addPerson, data]);
 
   const getPageContent = (loading: boolean, isError: boolean, data: GetAllQuery | undefined) => {
     if(isError || loading) return

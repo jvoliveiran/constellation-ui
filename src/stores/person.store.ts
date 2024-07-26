@@ -7,14 +7,14 @@ interface PersonStore {
 }
 
 interface PersonStoreActions {
-  add: (data: Person[]) => void
+  addPerson: (data: Person[]) => void
 }
 
 const usePersonStore = create<PersonStore>((set, get) => ({
   data: [],
   actions: {
-    add: (newData) => {
-      set({ data: newData })
+    addPerson: (personData) => {
+      set({ data: personData })
     }
   }
 }));
