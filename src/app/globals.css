@@ -1,10 +1,10 @@
 :root {
   --foreground-rgb: 0, 0, 0;
-  --color-primary: #DAFFFB;
-  --color-secondary: #64CCC5;
+  --color-primary: #7F00FF;
+  --color-secondary: #003153;
   --color-neutral: #607d87;
   --color-dark: #001C30;
-  --color-bg-light: #d1e9f2;
+  --color-bg-light: #d9d9d9;
 }
 
 @media (prefers-color-scheme: dark) {

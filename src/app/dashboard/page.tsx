@@ -1,9 +1,12 @@
-import { Heading } from '@radix-ui/themes';
+import { Typography } from '@mui/material';
+import { comfortaa } from '../config/font';
 
 export default function Overview(): React.ReactNode {
   return (
     <>
-      <Heading as="h1" size="8" className="text-dark">Overview</Heading>
+      <Typography variant="h2" className="text-dark font-medium">
+        Dashboard
+      </Typography>
     </>
   )
 }

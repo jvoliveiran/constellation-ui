@@ -1,4 +1,3 @@
-import '@radix-ui/themes/styles.css';
 import './theme-config.css';
 import "./globals.css";
 import { inter } from '@/app/config/font';

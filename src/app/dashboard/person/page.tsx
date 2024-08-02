@@ -1,13 +1,14 @@
 "use client"
 
-import { Callout, Heading, Spinner, Table } from '@radix-ui/themes';
 import { Maybe, GetAllQuery } from '@/graphql/generated/graphql';
 import { useQueryClient } from '@tanstack/react-query';
 import { getRequestClient } from '@/lib/request-client';
-import { InfoCircledIcon } from '@radix-ui/react-icons';
+import RotateRightIcon from '@mui/icons-material/RotateRight';
 import { usePerson } from '@/services/person.queries';
 import { usePersonData, usePersonActions } from '@/stores/person.store';
 import { useEffect } from 'react';
+import { Table, TableBody, TableCell, TableHead, TableRow, Typography, Alert} from '@mui/material';
+
 
 export default function Person(): React.ReactNode {
   const queryClient = useQueryClient();
@@ -27,18 +28,18 @@ export default function Person(): React.ReactNode {
   const getPageContent = (loading: boolean, isError: boolean, data: GetAllQuery | undefined) => {
     if(isError || loading) return
     if(!data) return (
-      <Table.Row>
-        <Table.Cell>No results found</Table.Cell>
-      </Table.Row>
+      <TableRow>
+        <TableCell>No results found</TableCell>
+      </TableRow>
     )
 
     return <>{data.getAll.map(person => {
       return (
-        <Table.Row key={person.id}>
-          <Table.RowHeaderCell>{person.id}</Table.RowHeaderCell>
-          <Table.Cell>{person.name}</Table.Cell>
-          <Table.Cell>{person.age}</Table.Cell>
-        </Table.Row>
+        <TableRow key={person.id}>
+          <TableCell>{person.id}</TableCell>
+          <TableCell>{person.name}</TableCell>
+          <TableCell>{person.age}</TableCell>
+        </TableRow>
       )
     })}</>
   }
@@ -48,14 +49,9 @@ export default function Person(): React.ReactNode {
     console.error('Error fetching people', error);
     return (
       <div className='mt-6'>
-        <Callout.Root color="red">
-          <Callout.Icon>
-            <InfoCircledIcon />
-          </Callout.Icon>
-          <Callout.Text>
-            {`Error fetching data`}
-          </Callout.Text>
-        </Callout.Root>
+        <Alert icon={<RotateRightIcon fontSize="inherit" />} severity="error">
+          {`Error fetching data`}
+        </Alert>
       </div>
     );
   }
@@ -63,30 +59,30 @@ export default function Person(): React.ReactNode {
   const showLoading = (isPending: boolean) => {
     if(isPending) return (
       <div className="flex justify-center items-center">
-        <Spinner size="3" />
+        <RotateRightIcon />
       </div>
     )
   }
 
   return (
     <>
-      <Heading as="h1" size="8" className="text-dark">Person</Heading>
+      <Typography variant="h2" className="text-dark font-medium">Person</Typography>
       {getErrorContent(isError, error)}
       {showLoading(isPending)}
       <div className="flex flex-col mt-6">
-        <Table.Root>
-          <Table.Header>
-            <Table.Row>
-              <Table.ColumnHeaderCell>ID</Table.ColumnHeaderCell>
-              <Table.ColumnHeaderCell>Name</Table.ColumnHeaderCell>
-              <Table.ColumnHeaderCell>Age</Table.ColumnHeaderCell>
-            </Table.Row>
-          </Table.Header>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell>ID</TableCell>
+              <TableCell>Name</TableCell>
+              <TableCell>Age</TableCell>
+            </TableRow>
+          </TableHead>
 
-          <Table.Body>
+          <TableBody>
             {getPageContent(isPending, isError, data)}
-          </Table.Body>
-        </Table.Root>
+          </TableBody>
+        </Table>
       </div>
     </>
   )
