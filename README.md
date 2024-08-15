@@ -6,17 +6,22 @@ First, run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+
+## Material UI and Tailwind
+
+For optimizing development time, this project heavily rely on [Material UI components](https://mui.com/material-ui/all-components/) and [Tailwind](https://tailwindcss.com/docs/) for styling in general.
+
+Tailwind tags will always overwrite any style set by Material UI
+
+For changing colors in current theme, refer to file:
+```
+src/app/config/theme.ts
+```
 
 ## React Query 
 
@@ -78,7 +83,6 @@ const { isPending, isError, data, error } = useQuery({
     queryFn: () => getRequestClient().request(GetAllDocument),
     staleTime: 0.5 * 60 * 1000
   }, queryClient);
-```
 ```
 
 ## Tests

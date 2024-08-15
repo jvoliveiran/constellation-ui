@@ -1,16 +1,17 @@
-import { Heading } from '@radix-ui/themes';
+import { Typography } from '@mui/material';
+import { comfortaa } from '../config/font';
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div className="w-full h-screen flex flex-row">
-      <div className="w-2/3 bg-dark flex flex-col justify-center">
+      <div className="w-2/3 bg-black flex flex-col justify-center">
         <div className="m-20">
-          <Heading as="h1" size="9" className="text-white">
+          <Typography variant="h1" className="text-white">
             Welcome to
-          </Heading>
-          <Heading as="h1" size="9">
-            <span className="text-secondary">Constellation</span>
-          </Heading>
+          </Typography>
+          <Typography variant="h1" className="text-white">
+            <span className={comfortaa.className}>Constellation</span>
+          </Typography>
         </div>
       </div>
       <div className="w-1/3 flex flex-row items-center justify-center">

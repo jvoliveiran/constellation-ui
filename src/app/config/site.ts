@@ -1,4 +1,6 @@
-import { GearIcon, HomeIcon, MixerHorizontalIcon, PersonIcon } from '@radix-ui/react-icons';
+import HomeIcon from '@mui/icons-material/Home';
+import PersonIcon from '@mui/icons-material/Person';
+import KeyIcon from '@mui/icons-material/Key';
 
 export type SiteConfig = typeof siteConfig;
 
@@ -24,7 +26,7 @@ const siteConfig = {
     {
       label: 'Permissions',
       href: '/dashboard/permissions',
-      Icon: MixerHorizontalIcon
+      Icon: KeyIcon
     },
   ],
   links: {
