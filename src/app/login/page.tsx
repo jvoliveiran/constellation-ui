@@ -12,7 +12,7 @@ export default function Login() {
         <Link href="/dashboard" className="w-2/5">
           <Button variant="contained" className="w-full font-semibold">Login</Button>
         </Link>
-        <Button variant="contained" className="w-2/5 font-semibold">Clear</Button>
+        <Button variant="outlined" className="w-2/5 font-semibold">Clear</Button>
       </div>
       <div className="w-full flex flex-row justify-between">
         <Button variant="contained" className="w-full font-semibold">Signup</Button>
