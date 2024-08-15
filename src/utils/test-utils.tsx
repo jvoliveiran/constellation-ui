@@ -1,4 +1,5 @@
-import { Theme } from '@radix-ui/themes';
+import { theme } from '@/app/config/theme';
+import { ThemeProvider } from '@mui/material/styles';
 import { QueryClient, QueryClientConfig, QueryClientProvider } from '@tanstack/react-query';
 import { render } from '@testing-library/react';
 import { FunctionComponent, PropsWithChildren, ReactNode } from 'react';
@@ -21,11 +22,11 @@ type WrapperProps = {
 const Wrapper: FunctionComponent<PropsWithChildren<WrapperProps>> = ({ children, queryClient }) => {
   const client = queryClient ?? new QueryClient(queryClientConfig);
   return (
-    <Theme accentColor="blue" grayColor="slate" appearance="light">
+    <ThemeProvider theme={theme}>
 		  <QueryClientProvider client={client}>
         {children}
 		  </QueryClientProvider>
-    </Theme>
+    </ThemeProvider>
   );
 };
 
