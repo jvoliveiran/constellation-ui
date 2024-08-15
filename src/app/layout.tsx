@@ -1,4 +1,3 @@
-import './theme-config.css';
 import "./globals.css";
 import { inter } from '@/app/config/font';
 import siteConfig from './config/site';
