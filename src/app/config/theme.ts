@@ -22,6 +22,11 @@ const violetBase = '#7F00FF';
 const violetMain = alpha(violetBase, 0.9);
 
 export const theme = createTheme({ 
+  typography: {
+    button: {
+      textTransform: 'none'
+    }
+  },
   palette: {
     primary: {
       main: '#000000'
