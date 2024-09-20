@@ -8,6 +8,7 @@ import { GetAllQuery } from '@/graphql/generated/graphql';
 import { getRequestClient } from '@/lib/request-client';
 import { usePerson } from '@/services/person.queries';
 import { usePersonActions, usePersonData } from '@/stores/person.store';
+import ErrorMessage from '@/app/components/error-message';
 
 export default function PersonList(): React.ReactNode {
   const queryClient = useQueryClient();
@@ -45,18 +46,9 @@ export default function PersonList(): React.ReactNode {
     })}</>
   }
 
-  const showError = (isError, error) => {
-    if(!isError) return
-    return (
-      <div className="mt-6">
-        <Alert severity="error">Error on fetching person data</Alert>
-      </div>
-    )
-  }
-
   return (
     <>
-      {showError(isError, error)}
+      <ErrorMessage show={isError} message='Error on fetching person data' />
       <div className="flex flex-col mt-6">
         <Table>
           <TableHead>

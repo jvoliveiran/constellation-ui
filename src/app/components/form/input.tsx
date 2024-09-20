@@ -8,14 +8,19 @@ type FormInputProps = {
   name: string,
   control: any,
   label: string,
+  required?: boolean
   type?: string
 }
 
-export const FormInputText = ({ name, control, label, type = 'text' }: FormInputProps): React.ReactNode => {
+export const FormInputText = ({ name, control, label, type = 'text', required = false }: FormInputProps): React.ReactNode => {
+  let rules = {}
+  if (required) rules = { ...rules, required: `${label} is required` };
+
   return (
     <Controller
       name={name}
       control={control}
+      rules={rules}
       render={({
         field: { onChange, value },
         fieldState: { error },
