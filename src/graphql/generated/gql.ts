@@ -14,7 +14,7 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  */
 const documents = {
     "mutation CreatePerson($person: CreatePersonInput!) {\n  createPerson(person: $person) {\n    age\n    id\n    name\n  }\n}": types.CreatePersonDocument,
-    "query GetAll {\n  getAll {\n    id\n    name\n    age\n  }\n}": types.GetAllDocument,
+    "query GetAll {\n  getAll {\n    id\n    name\n    age\n  }\n}\n\nquery GetOne($getOneId: Int!) {\n  getOne(id: $getOneId) {\n    id\n    age\n    name\n  }\n}": types.GetAllDocument,
 };
 
 /**
@@ -38,7 +38,7 @@ export function graphql(source: "mutation CreatePerson($person: CreatePersonInpu
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "query GetAll {\n  getAll {\n    id\n    name\n    age\n  }\n}"): (typeof documents)["query GetAll {\n  getAll {\n    id\n    name\n    age\n  }\n}"];
+export function graphql(source: "query GetAll {\n  getAll {\n    id\n    name\n    age\n  }\n}\n\nquery GetOne($getOneId: Int!) {\n  getOne(id: $getOneId) {\n    id\n    age\n    name\n  }\n}"): (typeof documents)["query GetAll {\n  getAll {\n    id\n    name\n    age\n  }\n}\n\nquery GetOne($getOneId: Int!) {\n  getOne(id: $getOneId) {\n    id\n    age\n    name\n  }\n}"];
 
 export function graphql(source: string) {
   return (documents as any)[source] ?? {};

@@ -1,4 +1,4 @@
-import { Button, Typography } from '@mui/material';
+import { Button, Typography, Divider } from '@mui/material';
 import PersonList from './components/list';
 import Link from 'next/link';
 
@@ -11,6 +11,7 @@ export default function Person(): React.ReactNode {
           <Button variant="contained">Create</Button>
         </Link>
       </div>
+      <Divider className="pt-4"/>
       <PersonList />
     </>
   )

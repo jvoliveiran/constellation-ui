@@ -5,3 +5,11 @@ query GetAll {
     age
   }
 }
+
+query GetOne($getOneId: Int!) {
+  getOne(id: $getOneId) {
+    id
+    age
+    name
+  }
+}
