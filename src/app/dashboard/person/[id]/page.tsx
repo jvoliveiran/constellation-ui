@@ -1,13 +1,16 @@
-import { Button, Typography } from '@mui/material';
-import Link from 'next/link';
+import { Divider, Typography } from '@mui/material';
 import PersonView from '../components/view';
+import Breadcrumb from '@/app/components/breadcrumb';
+import Header from '@/app/components/header';
 
 export default function ViewPerson({ params }): React.ReactNode {
   const { id } = params;
   return (
     <>
-      <Typography variant="h2" className={`text-dark font-medium`}>Person</Typography>
-      <Typography variant="h4" className="text-dark font-medium pt-2"># {id}</Typography>
+      <Header
+        title="Person"
+        subtitle={`# ${id}`}
+      />
       <PersonView id={id} />
     </>
   )
