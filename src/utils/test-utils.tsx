@@ -23,14 +23,14 @@ const Wrapper: FunctionComponent<PropsWithChildren<WrapperProps>> = ({ children,
   const client = queryClient ?? new QueryClient(queryClientConfig);
   return (
     <ThemeProvider theme={theme}>
-		  <QueryClientProvider client={client}>
+      <QueryClientProvider client={client}>
         {children}
-		  </QueryClientProvider>
+      </QueryClientProvider>
     </ThemeProvider>
   );
 };
 
-const renderWithProviders = (children: ReactNode, reactQueryClient?: QueryClient) => {
+const renderWithProviders = (children: ReactNode) => {
   return render(children, { wrapper: Wrapper });
 }
 

@@ -13,6 +13,8 @@ type BreadcrumbPath = {
 export default function Breadcrumb(): ReactNode {
   const path = usePathname();
 
+  if (!path) return <></>
+
   let partialPath = ''
   const breadCrumbPaths: BreadcrumbPath[] = path
     .split('/')
@@ -24,8 +26,6 @@ export default function Breadcrumb(): ReactNode {
         href: partialPath
       };
   });
-
-  console.log({ breadCrumbPaths });
 
   return (
     <Typography variant="h6" className="text-gray-500 font-medium">
