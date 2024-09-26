@@ -32,9 +32,9 @@ export default function Breadcrumb(): ReactNode {
       {breadCrumbPaths && breadCrumbPaths.map((path, index) => {
         const { title, href } = path;
         return (
-          <>
-            /<Link key={index} href={href}>{title}</Link>
-          </>
+          <span key={index}>
+            /<Link key={index} href={href} className="underline">{title}</Link>
+          </span>
         )
       })}
     </Typography>

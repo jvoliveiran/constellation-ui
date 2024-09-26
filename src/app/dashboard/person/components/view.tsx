@@ -27,8 +27,6 @@ export default function PersonView({ id }: PersonViewProps): React.ReactNode {
     console.error({ error });
   }
 
-  console.log({person, id, error, isError, isPending})
-
   return (
     <>
       <ErrorMessage show={isError} message={`Error on fetching person data # ${id}`} />
