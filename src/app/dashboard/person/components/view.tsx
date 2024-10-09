@@ -1,13 +1,10 @@
 "use client"
 
-import { useEffect } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
-import { TableRow, TableCell, Table, TableBody, TableHead, Alert } from '@mui/material';
+import { TableRow, TableCell, Table, TableBody, TableHead, Paper } from '@mui/material';
 import Loading from '@/app/components/loading';
-import { GetAllQuery } from '@/graphql/generated/graphql';
 import { getRequestClient } from '@/lib/request-client';
-import { useGetPerson, usePerson } from '@/services/person.queries';
-import { usePersonActions, usePersonData } from '@/stores/person.store';
+import { useGetPerson } from '@/services/person.queries';
 import ErrorMessage from '@/app/components/error-message';
 
 type PersonViewProps = {
@@ -30,7 +27,7 @@ export default function PersonView({ id }: PersonViewProps): React.ReactNode {
   return (
     <>
       <ErrorMessage show={isError} message={`Error on fetching person data # ${id}`} />
-      <div className="flex flex-col mt-6">
+      <Paper className="flex flex-col mt-6">
         <Table>
           <TableHead>
             <TableRow>
@@ -48,7 +45,7 @@ export default function PersonView({ id }: PersonViewProps): React.ReactNode {
           </TableRow>
           </TableBody>
         </Table>
-      </div>
+      </Paper>
     </>
   )
 }
